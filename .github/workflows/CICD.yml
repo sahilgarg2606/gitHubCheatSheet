@@ -1,0 +1,40 @@
+name: CICD
+on: 
+  workflow_dispatch:
+    inputs:
+      environments:
+        description: This is the environment for testing only
+        default: 'dev'
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code merged
+        run: echo "Code cloned from the github"
+    
+  build:
+    needs: code
+    runs-on: ubuntu-latest
+    steps:
+      - name: code builded
+        run: echo "Code build successfully"
+  test:
+    needs:
+      - code
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - name: code testing
+        run: echo "code tested succesfully"
+  deploy:
+     needs: [code, build, test]
+     runs-on: ubuntu-latest
+     steps:
+       - name: code deployed
+         run: echo "code deployed successfully"

@@ -1,0 +1,24 @@
+#this is workflow name
+name: Hello
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.txt'
+#these are jobs Inside the 
+jobs:
+#name of job
+  greets: 
+      runs-on: ubuntu-latest
+      steps:
+        - name: Say hello to user
+          run: echo "Hello World"
+
+        - name: Say hello to user
+          run: echo "hello $USER"
+  details:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Tells version of docker and python
+          run: docker --version && git --version
