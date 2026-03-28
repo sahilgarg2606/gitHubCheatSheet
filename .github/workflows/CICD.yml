@@ -1,0 +1,26 @@
+name: CICD
+on: 
+  workflow_dispatch:
+
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code merged
+        run: echo "Code cloned from the github"
+    
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code builded
+        run: echo "Code build successfully"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code testing
+        run: echo "code tested succesfully"
+  deploy:
+     runs-on: ubuntu-latest
+     steps:
+       - name: code deployed
+         run: echo "code deployed successfully"
