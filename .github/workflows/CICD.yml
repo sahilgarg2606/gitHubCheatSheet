@@ -10,16 +10,21 @@ jobs:
         run: echo "Code cloned from the github"
     
   build:
+    needs: code
     runs-on: ubuntu-latest
     steps:
       - name: code builded
         run: echo "Code build successfully"
   test:
+    needs:
+      - code
+      - build
     runs-on: ubuntu-latest
     steps:
       - name: code testing
         run: echo "code tested succesfully"
   deploy:
+     needs: [code, build, test]
      runs-on: ubuntu-latest
      steps:
        - name: code deployed
