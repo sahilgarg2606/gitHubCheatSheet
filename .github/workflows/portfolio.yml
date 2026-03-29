@@ -4,17 +4,12 @@ on:
         branches: 
             - main
     workflow_dispatch:
-        inputs:
-            environments:
-                description: this is the environment
-                default: 'dev'
-                required: true
-                type: choice
-                option:
-                    - dev
-                    - prod
+        
 jobs:
     deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
         runs-on: ubuntu:latest
         steps: 
             - name: code checkout
